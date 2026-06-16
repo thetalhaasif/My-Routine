@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Daily Routine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg2: #161820;
+    --bg3: #1e2028;
+    --bg4: #252830;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text1: #f0f0f4;
+    --text2: #9a9bad;
+    --text3: #5e6070;
+    --gold: #c9a96e;
+    --gold-dim: rgba(201,169,110,0.12);
+    --gold-glow: rgba(201,169,110,0.2);
+    --teal: #4ecdc4;
+    --teal-dim: rgba(78,205,196,0.1);
+    --purple: #9b8fef;
+    --purple-dim: rgba(155,143,239,0.1);
+    --amber: #f0a04b;
+    --amber-dim: rgba(240,160,75,0.1);
+    --blue: #5b9cf6;
+    --blue-dim: rgba(91,156,246,0.1);
+    --green: #6bcf7f;
+    --green-dim: rgba(107,207,127,0.1);
+    --coral: #ef7c6e;
+    --coral-dim: rgba(239,124,110,0.1);
+    --gray-dim: rgba(255,255,255,0.06);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-pill: 100px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+    --transition: 0.2s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text1);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── LAYOUT ─── */
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .app { max-width: 100%; flex-direction: row; }
+    .sidebar { width: 260px; min-height: 100vh; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    .main { flex: 1; overflow-y: auto; }
+    .bottom-nav { display: none; }
+    .sidebar-nav { display: flex !important; }
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    padding: 20px 20px 12px;
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (min-width: 768px) {
+    .header { padding: 32px 32px 24px; }
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .app-name {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .header-greeting {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text1);
+    line-height: 1.3;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 4px;
+  }
+
+  .bismillah {
+    font-family: 'Amiri', serif;
+    font-size: 17px;
+    color: var(--gold);
+    text-align: center;
+    padding: 10px 20px 6px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── SIDEBAR NAV (desktop) ─── */
+  .sidebar {
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-header {
+    padding: 28px 20px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-app-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .sidebar-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text1);
+    line-height: 1.3;
+  }
+
+  .sidebar-bismillah {
+    font-family: 'Amiri', serif;
+    font-size: 15px;
+    color: var(--gold);
+    margin-top: 8px;
+    opacity: 0.8;
+  }
+
+  .sidebar-nav {
+    display: none;
+    flex-direction: column;
+    padding: 12px 12px;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .sidebar-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 12px 8px 6px;
+  }
+
+  .sidebar-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text2);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: left;
+    width: 100%;
+    transition: all var(--transition);
+  }
+
+  .sidebar-btn:hover { background: var(--gray-dim); color: var(--text1); }
+  .sidebar-btn.active { background: var(--gold-dim); color: var(--gold); font-weight: 500; }
+
+  .sidebar-btn .nav-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .sidebar-btn.active .nav-icon { opacity: 1; }
+
+  /* ─── MAIN CONTENT ─── */
+  .main {
+    flex: 1;
+    padding-bottom: 90px;
+  }
+
+  @media (min-width: 768px) {
+    .main { padding-bottom: 40px; padding: 0 0 40px; }
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .page-content {
+    padding: 0 16px;
+  }
+
+  @media (min-width: 768px) {
+    .page-content { padding: 0 32px; }
+  }
+
+  /* ─── BOTTOM NAV (mobile) ─── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text3);
+    transition: all var(--transition);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .nav-item.active { color: var(--gold); }
+
+  .nav-item svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.8;
+  }
+
+  .nav-label {
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ─── SECTION LABELS ─── */
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 20px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── ENERGY BADGE ─── */
+  .energy-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.04em;
+  }
+
+  .e-divine { background: var(--gold-dim); color: var(--gold); }
+  .e-high { background: var(--green-dim); color: var(--green); }
+  .e-med { background: var(--blue-dim); color: var(--blue); }
+  .e-low { background: var(--amber-dim); color: var(--amber); }
+  .e-rest { background: var(--gray-dim); color: var(--text2); }
+
+  /* ─── TIME BLOCKS ─── */
+  .time-block {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    background: var(--bg2);
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .time-block::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent-color, var(--border2));
+    border-radius: 3px 0 0 3px;
+  }
+
+  .time-block:hover {
+    border-color: var(--border2);
+    background: var(--bg3);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+
+  .time-col {
+    flex-shrink: 0;
+    width: 76px;
+  }
+
+  .time-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text3);
+    line-height: 1.4;
+  }
+
+  .block-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 15px;
+  }
+
+  .block-body { flex: 1; min-width: 0; }
+
+  .block-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text1);
+    margin-bottom: 3px;
+  }
+
+  .block-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.55;
+  }
+
+  /* Accent colors */
+  .accent-gold { --accent-color: var(--gold); }
+  .accent-teal { --accent-color: var(--teal); }
+  .accent-purple { --accent-color: var(--purple); }
+  .accent-amber { --accent-color: var(--amber); }
+  .accent-blue { --accent-color: var(--blue); }
+  .accent-green { --accent-color: var(--green); }
+  .accent-coral { --accent-color: var(--coral); }
+  .accent-gray { --accent-color: rgba(255,255,255,0.2); }
+
+  .icon-gold { background: var(--gold-dim); }
+  .icon-teal { background: var(--teal-dim); }
+  .icon-purple { background: var(--purple-dim); }
+  .icon-amber { background: var(--amber-dim); }
+  .icon-blue { background: var(--blue-dim); }
+  .icon-green { background: var(--green-dim); }
+  .icon-coral { background: var(--coral-dim); }
+  .icon-gray { background: var(--gray-dim); }
+
+  /* ─── DAY PILLS ─── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: var(--radius-pill);
+    margin: 2px 2px 2px 0;
+  }
+
+  .pill-gold { background: var(--gold-dim); color: var(--gold); }
+  .pill-teal { background: var(--teal-dim); color: var(--teal); }
+  .pill-purple { background: var(--purple-dim); color: var(--purple); }
+  .pill-amber { background: var(--amber-dim); color: var(--amber); }
+  .pill-blue { background: var(--blue-dim); color: var(--blue); }
+  .pill-green { background: var(--green-dim); color: var(--green); }
+  .pill-gray { background: var(--gray-dim); color: var(--text2); }
+
+  /* ─── WEEK GRID ─── */
+  .week-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  @media (min-width: 600px) {
+    .week-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (min-width: 900px) {
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .day-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    transition: all var(--transition);
+  }
+
+  .day-card:hover {
+    border-color: var(--border2);
+    background: var(--bg3);
+  }
+
+  .day-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text1);
+    margin-bottom: 2px;
+  }
+
+  .day-theme {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 10px;
+  }
+
+  /* ─── STATS ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  @media (min-width: 500px) {
+    .stats-row { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (min-width: 768px) {
+    .stats-row { grid-template-columns: repeat(5, 1fr); }
+  }
+
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    text-align: center;
+    transition: all var(--transition);
+  }
+
+  .stat-card:hover { border-color: var(--border2); }
+
+  .stat-value {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text2);
+    line-height: 1.3;
+  }
+
+  /* ─── PRINCIPLES ─── */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  @media (min-width: 640px) {
+    .principles-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .principle-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: all var(--transition);
+  }
+
+  .principle-card:hover { border-color: var(--border2); background: var(--bg3); }
+
+  .pc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .pc-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .pc-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text1);
+    line-height: 1.3;
+  }
+
+  .pc-body {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* ─── LEGEND ─── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+
+  .legend-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  /* ─── PAGE HEADER ─── */
+  .page-header {
+    padding: 24px 16px 4px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .page-header { padding: 32px 32px 4px; }
+    .page-content { padding: 0 32px; }
+  }
+
+  .page-title { font-size: 20px; font-weight: 600; color: var(--text1); }
+  .page-sub { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+  /* ─── QURAN CARD ─── */
+  .quran-card {
+    background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.03) 100%);
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .quran-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    line-height: 1.8;
+  }
+
+  .quran-trans {
+    font-size: 12px;
+    color: var(--text2);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+  /* ─── PROGRESS RING ─── */
+  .day-switcher {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 0 0 4px;
+    scrollbar-width: none;
+    margin-bottom: 4px;
+  }
+
+  .day-switcher::-webkit-scrollbar { display: none; }
+
+  .day-btn {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text2);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .day-btn:hover { border-color: var(--border2); color: var(--text1); }
+  .day-btn.active { background: var(--gold-dim); border-color: rgba(201,169,110,0.3); color: var(--gold); }
+
+  .view-content { display: none; }
+  .view-content.active { display: block; }
+
+  /* ─── ANIMATED DOT ─── */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR (desktop only) -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-app-name">My Routine</div>
+      <div class="sidebar-title">Data Analyst → AI Engineer</div>
+      <div class="sidebar-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Schedule</div>
+      <button class="sidebar-btn active" onclick="showPage('weekday', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Mon – Thu
+      </button>
+      <button class="sidebar-btn" onclick="showPage('friday', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Friday
+      </button>
+      <button class="sidebar-btn" onclick="showPage('saturday', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Saturday (CEO)
+      </button>
+      <button class="sidebar-btn" onclick="showPage('sunday', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        Sunday (Reset)
+      </button>
+      <div class="sidebar-section-label">Planning</div>
+      <button class="sidebar-btn" onclick="showPage('weekly', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Weekly overview
+      </button>
+      <button class="sidebar-btn" onclick="showPage('principles', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Principles
+      </button>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- PAGE: WEEKDAY -->
+    <div id="page-weekday" class="page active">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Mon – Thu</div>
+          <div class="page-sub">Your core productive days</div>
+        </div>
+        <span class="energy-tag e-divine">Structured</span>
+      </div>
+      <div class="page-content">
+
+        <div class="quran-card">
+          <div class="quran-arabic">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+          <div class="quran-trans">"Whoever fears Allah, He will make a way out for him." — Surah At-Talaq 65:2</div>
+        </div>
+
+        <div class="legend">
+          <span class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span>Ibadah</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span>Habits</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>DS / AI</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>Job</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Side hustle</span>
+        </div>
+
+        <div class="section-eyebrow">Before Fajr</div>
+
+        <div class="time-block accent-gray">
+          <div class="time-col"><div class="time-label">3:30 AM</div></div>
+          <div class="block-icon icon-gray">🌙</div>
+          <div class="block-body">
+            <div class="block-title">Wake up</div>
+            <div class="block-desc">Gentle alarm. Sit up, drink water, make intention (niyyah) for the day ahead</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Fajr & Ibadah <span class="energy-tag e-divine">Divine energy</span></div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">3:45 AM</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Tahajjud (optional) + Fajr prayer</div>
+            <div class="block-desc">2 rakats Tahajjud if you can · Fajr Adhan ~4:00 AM · Pray on time, this is your anchor</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">4:15 – 5:00</div></div>
+          <div class="block-icon icon-gold">📖</div>
+          <div class="block-body">
+            <div class="block-title">Quran reading & understanding</div>
+            <div class="block-desc">Recite 2–3 pages with tajweed · Read tafsir or translation for 1 page · Morning adhkar (dhikr) to close</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Power Morning <span class="energy-tag e-high">Peak energy</span></div>
+
+        <div class="time-block accent-purple">
+          <div class="time-col"><div class="time-label">5:00 – 5:15</div></div>
+          <div class="block-icon icon-purple">🧘</div>
+          <div class="block-body">
+            <div class="block-title">Meditation & affirmations</div>
+            <div class="block-desc">10 min mindfulness · 5 min affirmations & visualization — your goals, your DS career, your business</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-purple">
+          <div class="time-col"><div class="time-label">5:15 – 5:45</div></div>
+          <div class="block-icon icon-purple">🏃</div>
+          <div class="block-body">
+            <div class="block-title">Exercise</div>
+            <div class="block-desc">30 min walk, gym, or yoga. Fires up BDNF (the focus molecule). Non-negotiable even on tired days</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-purple">
+          <div class="time-col"><div class="time-label">5:45 – 6:10</div></div>
+          <div class="block-icon icon-purple">✍️</div>
+          <div class="block-body">
+            <div class="block-title">Reading & journaling</div>
+            <div class="block-desc">15 min book (DS / productivity / business) · 10 min journal: 1 win from yesterday + today's 3 priorities</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-teal">
+          <div class="time-col"><div class="time-label">6:10 – 7:50</div></div>
+          <div class="block-icon icon-teal">💻</div>
+          <div class="block-body">
+            <div class="block-title">Deep work — DS & AI learning</div>
+            <div class="block-desc">Mon/Wed: Python, ML, Scikit-learn · Tue/Thu: AI Engineering, LLMs, APIs, LangChain. Phone off, full focus</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gray">
+          <div class="time-col"><div class="time-label">7:50 – 8:00</div></div>
+          <div class="block-icon icon-gray">☕</div>
+          <div class="block-body">
+            <div class="block-title">Transition buffer</div>
+            <div class="block-desc">Get ready, light breakfast, 5 min preview your work day</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">9-to-5 Job <span class="energy-tag e-med">Medium energy</span></div>
+
+        <div class="time-block accent-blue">
+          <div class="time-col"><div class="time-label">8:00 – 12:00</div></div>
+          <div class="block-icon icon-blue">📊</div>
+          <div class="block-body">
+            <div class="block-title">Deep work at job</div>
+            <div class="block-desc">Hardest analyst tasks — SQL, dashboards, reports. Block calendar. No meetings before noon if possible</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">~12:30</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Dhuhr prayer</div>
+            <div class="block-desc">Pray on time. Use this as a mental reset mid-day — 5 minutes of complete disconnection from work</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-amber">
+          <div class="time-col"><div class="time-label">12:00 – 12:40</div></div>
+          <div class="block-icon icon-amber">📱</div>
+          <div class="block-body">
+            <div class="block-title">Lunch break → side hustle</div>
+            <div class="block-desc">Freelance: reply emails, quick client calls from car · Branding: schedule posts, reply to comments</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-blue">
+          <div class="time-col"><div class="time-label">1:00 – 5:00</div></div>
+          <div class="block-icon icon-blue">🤝</div>
+          <div class="block-body">
+            <div class="block-title">Meetings & collaboration</div>
+            <div class="block-desc">Batch all meetings in the afternoon. Use gaps for Slack, admin, and documentation tasks</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">~3:30 PM</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Asr prayer</div>
+            <div class="block-desc">Brief break to pray. The Prophet ﷺ said Asr is among the most important prayers — guard it</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Evening <span class="energy-tag e-low">Low energy</span></div>
+
+        <div class="time-block accent-amber">
+          <div class="time-col"><div class="time-label">5:30 – 7:00</div></div>
+          <div class="block-icon icon-amber">🛠️</div>
+          <div class="block-body">
+            <div class="block-title">Side hustle — light tasks only</div>
+            <div class="block-desc">Mon/Wed: Freelance admin (proposals, Upwork, invoices) · Tue/Thu: Content (captions, thumbnails, scheduling)</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">~6:00 PM</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Maghrib prayer</div>
+            <div class="block-desc">Stop everything. This is a sacred window. Short, but powerful for your mental reset</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gray">
+          <div class="time-col"><div class="time-label">7:00 – 8:30</div></div>
+          <div class="block-icon icon-gray">🍽️</div>
+          <div class="block-body">
+            <div class="block-title">Family time & dinner</div>
+            <div class="block-desc">Fully present. No business emails after 8:00 PM. Family is the reason you're building all of this</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">~8:00 PM</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Isha prayer</div>
+            <div class="block-desc">Pray on time. Read a short surah after. Begin your wind-down sequence</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-purple">
+          <div class="time-col"><div class="time-label">8:30 – 9:00</div></div>
+          <div class="block-icon icon-purple">🌟</div>
+          <div class="block-body">
+            <div class="block-title">Wind-down ritual</div>
+            <div class="block-desc">5 min gratitude journal + Ayat al-Kursi & last 2 verses of Al-Baqarah + preview tomorrow's 3 tasks. No screens after 9 PM</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gray" style="margin-bottom:4px;">
+          <div class="time-col"><div class="time-label">9:00 PM – 3:30 AM</div></div>
+          <div class="block-icon icon-gray">😴</div>
+          <div class="block-body">
+            <div class="block-title">Sleep — 6.5 hrs minimum</div>
+            <div class="block-desc">Quality over quantity. Pre-sleep dhikr (SubhanAllah 33×, Alhamdulillah 33×, Allahu Akbar 34×). Keep room dark and cool</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGE: FRIDAY -->
+    <div id="page-friday" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Friday</div>
+          <div class="page-sub">Jumu'ah + content creation day</div>
+        </div>
+        <span class="energy-tag e-divine">Sacred</span>
+      </div>
+      <div class="page-content">
+
+        <div class="quran-card">
+          <div class="quran-arabic">يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا نُودِيَ لِلصَّلَاةِ مِن يَوْمِ الْجُمُعَةِ فَاسْعَوْا إِلَىٰ ذِكْرِ اللَّهِ</div>
+          <div class="quran-trans">"O believers! When the call to prayer is made on Friday, rush to the remembrance of Allah." — Surah Al-Jumu'ah 62:9</div>
+        </div>
+
+        <div class="section-eyebrow">Fajr & Morning <span class="energy-tag e-divine">Sacred day</span></div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">3:45 – 5:00</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Fajr + Surah Al-Kahf</div>
+            <div class="block-desc">Pray Fajr · Read Surah Al-Kahf (Sunnah of Friday) · Morning adhkar. The best start to the best day</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-purple">
+          <div class="time-col"><div class="time-label">5:00 – 6:00</div></div>
+          <div class="block-icon icon-purple">🧘</div>
+          <div class="block-body">
+            <div class="block-title">Full SAVERS — unhurried</div>
+            <div class="block-desc">Longer meditation, full workout, leisurely reading. Friday morning has a different energy — use it</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-amber">
+          <div class="time-col"><div class="time-label">6:00 – 7:45</div></div>
+          <div class="block-icon icon-amber">🎥</div>
+          <div class="block-body">
+            <div class="block-title">Content creation — deep work</div>
+            <div class="block-desc">Film LinkedIn videos or reels · Record podcast snippets · Write long-form posts or case studies from your DS work this week</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Job + Jumu'ah <span class="energy-tag e-med">Medium energy</span></div>
+
+        <div class="time-block accent-blue">
+          <div class="time-col"><div class="time-label">8:00 – 12:00</div></div>
+          <div class="block-icon icon-blue">📊</div>
+          <div class="block-body">
+            <div class="block-title">9-to-5 (light Friday mode)</div>
+            <div class="block-desc">Wrap deliverables from the week. Protect energy for Jumu'ah and the weekend ahead</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">12:00 – 2:00</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Jumu'ah (Friday prayer)</div>
+            <div class="block-desc">Ghusl before prayer · Khutbah + 2 rakats Jumu'ah · Send salawat on the Prophet ﷺ abundantly throughout the day</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-blue">
+          <div class="time-col"><div class="time-label">2:00 – 5:00</div></div>
+          <div class="block-icon icon-blue">📋</div>
+          <div class="block-body">
+            <div class="block-title">Finish job + weekly review</div>
+            <div class="block-desc">Remaining work tasks · Then: what moved the needle this week on DS learning, freelancing, branding?</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Evening <span class="energy-tag e-rest">Rest</span></div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">Evening</div></div>
+          <div class="block-icon icon-gold">🤲</div>
+          <div class="block-body">
+            <div class="block-title">Maghrib + Isha + Dua</div>
+            <div class="block-desc">Friday evening is a time of answered duas. Sit after Maghrib and make sincere dua for your goals and family</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gray">
+          <div class="time-col"><div class="time-label">7:00+</div></div>
+          <div class="block-icon icon-gray">🎉</div>
+          <div class="block-body">
+            <div class="block-title">Full evening off</div>
+            <div class="block-desc">Social life, family, entertainment. You earned it. Zero work guilt</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGE: SATURDAY -->
+    <div id="page-saturday" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Saturday</div>
+          <div class="page-sub">CEO Day — batch, build, strategize</div>
+        </div>
+        <span class="energy-tag e-high">High output</span>
+      </div>
+      <div class="page-content">
+
+        <div class="section-eyebrow">Morning Anchor <span class="energy-tag e-divine">Ibadah first</span></div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">4:00 – 5:00</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Fajr + Quran + Adhkar</div>
+            <div class="block-desc">Pray Fajr · 2–3 pages Quran with understanding · Full morning adhkar. Weekend allows more time here</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-purple">
+          <div class="time-col"><div class="time-label">5:00 – 6:30</div></div>
+          <div class="block-icon icon-purple">💪</div>
+          <div class="block-body">
+            <div class="block-title">Longer workout + slow breakfast</div>
+            <div class="block-desc">45–60 min gym session or outdoor run · Full breakfast without rushing · Set your CEO intention for the day</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">CEO Blocks <span class="energy-tag e-high">Peak energy</span></div>
+
+        <div class="time-block accent-teal">
+          <div class="time-col"><div class="time-label">7:00 – 10:00</div></div>
+          <div class="block-icon icon-teal">🧠</div>
+          <div class="block-body">
+            <div class="block-title">Deep DS/AI project — 3 hrs uninterrupted</div>
+            <div class="block-desc">Build a portfolio project · Complete a Kaggle challenge · Take a full course module · This is your weekly skill anchor block</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-amber">
+          <div class="time-col"><div class="time-label">10:00 – 12:30</div></div>
+          <div class="block-icon icon-amber">🎬</div>
+          <div class="block-body">
+            <div class="block-title">Content batch session</div>
+            <div class="block-desc">Film 3–5 short videos at once · Write 2 LinkedIn articles · Schedule the full week's posts via Buffer or Later</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gray">
+          <div class="time-col"><div class="time-label">12:30 – 1:30</div></div>
+          <div class="block-icon icon-gray">🍽️</div>
+          <div class="block-body">
+            <div class="block-title">Dhuhr + full lunch break</div>
+            <div class="block-desc">Pray Dhuhr · Step away from screens · Walk outside for 10 min. A real break makes the afternoon 2× better</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-amber">
+          <div class="time-col"><div class="time-label">1:30 – 3:30</div></div>
+          <div class="block-icon icon-amber">💼</div>
+          <div class="block-body">
+            <div class="block-title">Freelance CEO tasks</div>
+            <div class="block-desc">Update portfolio · Send 3–5 proposals · Plan next week's client deliverables · Review income tracking spreadsheet</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">~3:30</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Asr prayer</div>
+            <div class="block-desc">Hard stop for Asr. Non-negotiable even on CEO day</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gray">
+          <div class="time-col"><div class="time-label">4:00+</div></div>
+          <div class="block-icon icon-gray">👨‍👩‍👧</div>
+          <div class="block-body">
+            <div class="block-title">Family & personal time</div>
+            <div class="block-desc">No work. This boundary makes Monday feel fresh. Protecting this is what prevents burnout</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGE: SUNDAY -->
+    <div id="page-sunday" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Sunday</div>
+          <div class="page-sub">Reset, reflect, and plan</div>
+        </div>
+        <span class="energy-tag e-rest">Recovery</span>
+      </div>
+      <div class="page-content">
+
+        <div class="section-eyebrow">Slow Morning <span class="energy-tag e-divine">Unhurried</span></div>
+
+        <div class="time-block accent-gold">
+          <div class="time-col"><div class="time-label">4:00 – 5:30</div></div>
+          <div class="block-icon icon-gold">🕌</div>
+          <div class="block-body">
+            <div class="block-title">Fajr + extended Quran & reflection</div>
+            <div class="block-desc">Pray Fajr · Spend extra time with Quran today — focus on understanding and pondering meaning, not just quantity</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-purple">
+          <div class="time-col"><div class="time-label">5:30 – 7:00</div></div>
+          <div class="block-icon icon-purple">☀️</div>
+          <div class="block-body">
+            <div class="block-title">Slow, restorative morning</div>
+            <div class="block-desc">No agenda. Light reading (not a course — a real book). Easy walk. Journaling if you feel like it. Fully offline until 9 AM</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Planning <span class="energy-tag e-med">Intentional</span></div>
+
+        <div class="time-block accent-teal">
+          <div class="time-col"><div class="time-label">9:00 – 10:30</div></div>
+          <div class="block-icon icon-teal">🗓️</div>
+          <div class="block-body">
+            <div class="block-title">Weekly planning session</div>
+            <div class="block-desc">Set 3 goals: one DS learning · one side hustle · one job · Time-block your Mon–Fri calendar. This one hour runs your whole week</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-amber">
+          <div class="time-col"><div class="time-label">10:30 – 11:30</div></div>
+          <div class="block-icon icon-amber">📲</div>
+          <div class="block-body">
+            <div class="block-title">Light content or Upwork review</div>
+            <div class="block-desc">Reply to freelance inquiries · Edit a scheduled post · Check analytics. Max 1 hour — then close the laptop</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Full Rest <span class="energy-tag e-rest">Protected</span></div>
+
+        <div class="time-block accent-gray">
+          <div class="time-col"><div class="time-label">12:00+</div></div>
+          <div class="block-icon icon-gray">🛋️</div>
+          <div class="block-body">
+            <div class="block-title">Complete rest — no laptops</div>
+            <div class="block-desc">Family, nature, social time. This is the fuel for your entire week. Guard it fiercely</div>
+          </div>
+        </div>
+
+        <div class="time-block accent-gold" style="margin-bottom:4px;">
+          <div class="time-col"><div class="time-label">Evening</div></div>
+          <div class="block-icon icon-gold">🤲</div>
+          <div class="block-body">
+            <div class="block-title">Isha + night routine + early sleep</div>
+            <div class="block-desc">Pray Isha · Read Ayat al-Kursi and last two verses of Al-Baqarah · Sleep by 8:30–9:00 PM to power Monday's 3:30 AM wake</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGE: WEEKLY -->
+    <div id="page-weekly" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Weekly overview</div>
+          <div class="page-sub">What each day is optimized for</div>
+        </div>
+      </div>
+      <div class="page-content">
+
+        <div class="section-eyebrow">Day themes</div>
+        <div class="week-grid">
+          <div class="day-card">
+            <div class="day-name">Monday</div>
+            <div class="day-theme">ML foundations</div>
+            <span class="pill pill-teal">Python / ML</span>
+            <span class="pill pill-amber">Freelance admin</span>
+            <span class="pill pill-gold">Ibadah</span>
+          </div>
+          <div class="day-card">
+            <div class="day-name">Tuesday</div>
+            <div class="day-theme">AI Engineering</div>
+            <span class="pill pill-teal">LLMs / APIs</span>
+            <span class="pill pill-amber">Content ideas</span>
+            <span class="pill pill-gold">Ibadah</span>
+          </div>
+          <div class="day-card">
+            <div class="day-name">Wednesday</div>
+            <div class="day-theme">ML projects</div>
+            <span class="pill pill-teal">Portfolio build</span>
+            <span class="pill pill-amber">Freelance outreach</span>
+            <span class="pill pill-gold">Ibadah</span>
+          </div>
+          <div class="day-card">
+            <div class="day-name">Thursday</div>
+            <div class="day-theme">AI tools</div>
+            <span class="pill pill-teal">Tools & deploy</span>
+            <span class="pill pill-amber">Content drafts</span>
+            <span class="pill pill-gold">Ibadah</span>
+          </div>
+          <div class="day-card">
+            <div class="day-name">Friday</div>
+            <div class="day-theme">Jumu'ah + content</div>
+            <span class="pill pill-gold">Jumu'ah</span>
+            <span class="pill pill-amber">Film/record</span>
+            <span class="pill pill-gray">Evening off</span>
+          </div>
+          <div class="day-card">
+            <div class="day-name">Saturday</div>
+            <div class="day-theme">CEO day</div>
+            <span class="pill pill-teal">3-hr DS project</span>
+            <span class="pill pill-amber">Content batch</span>
+            <span class="pill pill-amber">Freelance plan</span>
+          </div>
+          <div class="day-card">
+            <div class="day-name">Sunday</div>
+            <div class="day-theme">Reset & plan</div>
+            <span class="pill pill-gold">Extended Quran</span>
+            <span class="pill pill-blue">Weekly planning</span>
+            <span class="pill pill-gray">Full rest</span>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Weekly time budget</div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-value" style="color:var(--gold)">~7h</div>
+            <div class="stat-label">Quran & prayers</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color:var(--teal)">~10h</div>
+            <div class="stat-label">DS / AI learning</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color:var(--amber)">~8h</div>
+            <div class="stat-label">Side hustle</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color:var(--blue)">~40h</div>
+            <div class="stat-label">9-to-5 job</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color:var(--purple)">~7h</div>
+            <div class="stat-label">Habits & exercise</div>
+          </div>
+        </div>
+
+        <div class="section-eyebrow">Prayer times (approx.)</div>
+        <div class="principles-grid">
+          <div class="principle-card" style="border-color:rgba(201,169,110,0.2);">
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; padding: 6px 0; border-bottom:1px solid var(--border);">
+                <span style="font-size:13px; color:var(--text1); font-weight:500;">🌙 Fajr</span>
+                <span style="font-size:12px; color:var(--gold);">~4:00 AM</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding: 6px 0; border-bottom:1px solid var(--border);">
+                <span style="font-size:13px; color:var(--text1); font-weight:500;">☀️ Dhuhr</span>
+                <span style="font-size:12px; color:var(--gold);">~12:30 PM</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding: 6px 0; border-bottom:1px solid var(--border);">
+                <span style="font-size:13px; color:var(--text1); font-weight:500;">🌤️ Asr</span>
+                <span style="font-size:12px; color:var(--gold);">~3:30 PM</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding: 6px 0; border-bottom:1px solid var(--border);">
+                <span style="font-size:13px; color:var(--text1); font-weight:500;">🌆 Maghrib</span>
+                <span style="font-size:12px; color:var(--gold);">~6:00 PM</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding: 6px 0;">
+                <span style="font-size:13px; color:var(--text1); font-weight:500;">🌃 Isha</span>
+                <span style="font-size:12px; color:var(--gold);">~8:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-card">
+            <div class="pc-header">
+              <div class="pc-icon icon-gold">📖</div>
+              <div class="pc-title">Quran reading plan</div>
+            </div>
+            <div class="pc-body">
+              Fajr daily: 2–3 pages with tajweed<br>
+              + 1 page tafsir / translation<br>
+              Sunday: extended reflection session<br>
+              Friday: full Surah Al-Kahf<br>
+              <span style="color:var(--gold); margin-top:6px; display:block;">At this pace: ~1 Juz every 10 days</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGE: PRINCIPLES -->
+    <div id="page-principles" class="page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Principles</div>
+          <div class="page-sub">The rules that run this system</div>
+        </div>
+      </div>
+      <div class="page-content">
+
+        <div class="section-eyebrow">Mindset</div>
+        <div class="principles-grid">
+
+          <div class="principle-card">
+            <div class="pc-header">
+              <div class="pc-icon icon-gold">🏃</div>
+              <div class="pc-title">Marathon, not a sprint</div>
+            </div>
+            <div class="pc-body">1.5 hrs of DS learning every weekday morning = 375 hrs/year. More than any bootcamp. Small daily blocks compound dramatically. Don't burn out in month one.</div>
+          </div>
+
+          <div class="principle-card">
+            <div class="pc-header">
+              <div class="pc-icon icon-gold">🤲</div>
+              <div class="pc-title">Tawakkul + action</div>
+            </div>
+            <div class="pc-body">Do your best work, then leave the results to Allah. This removes anxiety from the equation. Pray Istikhara before big decisions about your career and hustle.</div>
+          </div>
+
+          <div class="principle-card">
+            <div class="pc-header">
+              <div class="pc-icon icon-teal">⚡</div>
+              <div class="pc-title">Freelancing first</div>
+            </div>
+            <div class="pc-body">Start with freelancing — faster cash, direct ROI on your DA/DS skills, builds confidence. Run personal branding in parallel at lower effort. Reassess in 3 months.</div>
+          </div>
+
+          <div class="principle-card">
+            <div class="pc-header">
+              <div class="pc-icon icon-teal">🧠</div>
+              <div class="pc-title">80/20 your DS learning</div>
+            </div>
+            <div class="pc-body">Focus on Python, SQL, scikit-learn, and one LLM framework (LangChain or LlamaIndex). Deep beats broad in interviews and with clients. Resist tutorial hopping.</div>
+          </div>
+
+          <div class="principle-card">
+            <div class="pc-icon icon-amber">✍️</div>
+            <div class="pc-header">
+              <div class="pc-icon icon-amber">📝</div>
+              <div class="pc-title">Content from real work</div>
+            </div>
+            <div class="pc-body">Your best content: "I solved X at my job using Y." LinkedIn posts documenting your DS/AI learning build audience and personal brand without extra research time.</div>
+          </div>
+
+          <div class="principle-card">
+            <div class="pc-header">
+              <div class="pc-icon icon-purple">😴</div>
+              <div class="pc-title">Sleep is sacred</div>
+            </div>
+            <div class="pc-body">6.5 hrs minimum (9 PM to 3:30 AM). Every great morning block depends on this. Never trade sleep for a task — you'll underperform at everything the next day.</div>
+          </div>
+
+          <div class="principle-card">
+            <div class="pc-header">
+              <div class="pc-icon icon-blue">📊</div>
+              <div class="pc-title">Track one metric per goal</div>
+            </div>
+            <div class="pc-body">DS: projects completed/month · Freelancing: proposals sent + revenue · Content: posts published + followers. Simple tracking beats complex systems every time.</div>
+          </div>
+
+          <div class="principle-card">
+            <div class="pc-header">
+              <div class="pc-icon icon-coral">🛑</div>
+              <div class="pc-title">Honor diminishing returns</div>
+            </div>
+            <div class="pc-body">If you're too tired to produce quality work, it's more effective to stop and rest than to force subpar output. Exhausted side hustle work costs you more than it earns.</div>
+          </div>
+
+        </div>
+
+        <div class="section-eyebrow">90-day milestones</div>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <div style="font-size:11px; font-weight:600; color:var(--teal); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Month 1</div>
+            <div class="pc-body" style="color:var(--text1);">
+              ✦ Lock in the SAVERS + Ibadah morning routine<br>
+              ✦ Complete Python/ML refresher<br>
+              ✦ Set up Upwork / LinkedIn profile<br>
+              ✦ Send first 10 freelance proposals
+            </div>
+          </div>
+          <div class="principle-card">
+            <div style="font-size:11px; font-weight:600; color:var(--amber); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Month 2</div>
+            <div class="pc-body" style="color:var(--text1);">
+              ✦ Close first freelance client<br>
+              ✦ Start LangChain / AI Engineering track<br>
+              ✦ Post 3× per week on LinkedIn<br>
+              ✦ Complete 1 portfolio project
+            </div>
+          </div>
+          <div class="principle-card">
+            <div style="font-size:11px; font-weight:600; color:var(--purple); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Month 3</div>
+            <div class="pc-body" style="color:var(--text1);">
+              ✦ 2nd freelance client, raise rate<br>
+              ✦ Build full end-to-end DS/AI project<br>
+              ✦ Review: double down on what's working<br>
+              ✦ Evaluate freelancing vs content focus
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="showPage('weekday', this)" id="nav-weekday">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span class="nav-label">Weekdays</span>
+    </button>
+    <button class="nav-item" onclick="showPage('friday', this)" id="nav-friday">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span class="nav-label">Friday</span>
+    </button>
+    <button class="nav-item" onclick="showPage('saturday', this)" id="nav-saturday">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <span class="nav-label">Saturday</span>
+    </button>
+    <button class="nav-item" onclick="showPage('sunday', this)" id="nav-sunday">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <span class="nav-label">Sunday</span>
+    </button>
+    <button class="nav-item" onclick="showPage('weekly', this)" id="nav-weekly">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span class="nav-label">Overview</span>
+    </button>
+  </nav>
+
+</div>
+
+<script>
+  const pages = ['weekday','friday','saturday','sunday','weekly','principles'];
+
+  function showPage(id, btn) {
+    pages.forEach(p => {
+      const el = document.getElementById('page-' + p);
+      if (el) el.classList.remove('active');
+    });
+    const target = document.getElementById('page-' + id);
+    if (target) {
+      target.classList.add('active');
+      target.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+    document.querySelectorAll('.nav-item, .sidebar-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
